@@ -50,17 +50,17 @@ if($_POST)
 		/* Mailgun code */
 		$mg = new Mailgun($api_key);
 
-		$mg->sendMessage($domain, array(
+		$response = $mg->sendMessage($domain, array(
         'from'=>'admin@ncaahoopspool.com',
         'to'=>'paulrmaurer@yahoo.com',
         'subject'=>'Test message from NCAAHoopsPool.com',
         'text'=>'Test message body'
         )
     );
-
+		echo $response
 	    // mailpassword($id, $mg, $mailgun_domain);
 
-	    header("Location: login.php");
+	    // header("Location: login.php");
 	}
         else
         {
