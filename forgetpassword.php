@@ -57,7 +57,7 @@ if($_POST)
         'text'=>'Test message body'
         )
     );
-		echo $response
+		echo $response;
 	    // mailpassword($id, $mg, $mailgun_domain);
 
 	    // header("Location: login.php");
