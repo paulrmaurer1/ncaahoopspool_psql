@@ -17,7 +17,8 @@
 	        'from'=>'admin@ncaahoopspool.com',
 	        'to'=>$email,
 	        'subject'=>'Your password for NCAAHoopsPool.com',
-	        'text'=>'Here is your password: '.$password
+	        'text'=>'Here is your password: '.$password,
+	        'html'=>'Here is your password: <b>'.$password.'</b>'
 	    ];
 
 	    return $parameters;
