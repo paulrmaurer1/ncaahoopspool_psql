@@ -10,7 +10,6 @@
 
 	/* Load Composer dependencies */
 	require_once ("vendor/autoload.php");
-
 	/* Load Mailgun Class */
 	use Mailgun\Mailgun;
 
@@ -38,23 +37,15 @@ if($_POST)
 	    $result=pg_exec($cxn,$query) or die ("Could not execute id lookup query");
 	    $row=pg_fetch_assoc($result);
 	    extract($row);
-	    /* Guzzle code */
-        // $client = new Client(['base_uri' => $api_url]);
-		// $request = new Request('POST', $api_url.'/messages');
-	    // mailpassword($id, $client, $request);
 		
-		/* Mailgun code */
+		/* Send email with Mailgun */
 		$mg = new Mailgun($api_key);
+		$parameters = mg_mailpassword_parameters($id);
 
-		$mg->sendMessage($domain, array(
-        'from'=>'admin@ncaahoopspool.com',
-        'to'=>'pmaurer@igojet.com',
-        'subject'=>'Test message from NCAAHoopsPool.com',
-        'text'=>'Test message body'
-        )
-    );
-		echo $response;
-	    // mailpassword($id, $mg, $mailgun_domain);
+		$mg->sendMessage($domain, $parameters);
+	    
+	    /* mailfunctions.inc code */
+	    // mailpassword($id);
 
 	    header("Location: login.php");
 	}

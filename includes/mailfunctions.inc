@@ -1,7 +1,6 @@
 <!--PHP function that mails various messages to players -->
 
 <?php
-// function mailpassword($id, $client, $request)
 function mailpassword($id, $mg, $domain)
 {
     require ("misc.inc");
