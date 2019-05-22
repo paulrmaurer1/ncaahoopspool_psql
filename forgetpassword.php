@@ -16,7 +16,7 @@
 	include_once("includes/head.inc");
 	include_once("includes/misc.inc");
 	include_once("includes/mailgun.inc");
-	include_once("includes/mailfunctions.inc");
+	// include_once("includes/mailfunctions.inc");
 	include_once("includes/checklogininfo.inc");
 ?>
 
@@ -29,31 +29,31 @@ include_once("includes/title.inc");
 <div id="body-content">
 <h3>Enter your email address</h3>
 <?php
-if($_POST)
-{
-    if (checklogininfo($_POST))/*if login matches player table, send email*/
+	if($_POST)
 	{
-	    $query="SELECT id FROM player WHERE email='".$_POST['loginemail']."'";
-	    $result=pg_exec($cxn,$query) or die ("Could not execute id lookup query");
-	    $row=pg_fetch_assoc($result);
-	    extract($row);
-		
-		/* Send email with Mailgun */
-		$mg = new Mailgun($api_key);
-		$parameters = mg_mailpassword_parameters($id);
+		if (checklogininfo($_POST))/*if login matches player table, send email*/
+		{
+		    $query="SELECT id FROM player WHERE email='".$_POST['loginemail']."'";
+		    $result=pg_exec($cxn,$query) or die ("Could not execute id lookup query");
+		    $row=pg_fetch_assoc($result);
+		    extract($row);
+			
+			/* Send email with Mailgun */
+			$mg = new Mailgun($api_key);
+			$parameters = mg_mailpassword_parameters($id);
 
-		$mg->sendMessage($domain, $parameters);
-	    
-	    /* mailfunctions.inc code */
-	    // mailpassword($id);
+			$mg->sendMessage($domain, $parameters);
+		    
+		    /* mailfunctions.inc function */
+		    // mailpassword($id);
 
-	    header("Location: login.php");
+		    header("Location: login.php");
+		}
+	        else
+	        {
+	            echo $message;
+	        }
 	}
-        else
-        {
-            echo $message;
-        }
-}
 ?>
 <form action="forgetpassword.php" method='POST'>
 	<label for="loginemail">Email:</label>

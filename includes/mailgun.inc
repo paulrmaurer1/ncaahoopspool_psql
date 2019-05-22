@@ -15,9 +15,9 @@
 
 	    $parameters = [
 	        'from'=>'admin@ncaahoopspool.com',
-	        'to'=>'pmaurer@igojet.com',
-	        'subject'=>'Test message from NCAAHoopsPool.com',
-	        'text'=>'Test message body'
+	        'to'=>$email,
+	        'subject'=>'Your password for NCAAHoopsPool.com',
+	        'text'=>'Here is your password: '.$password
 	    ];
 
 	    return $parameters;

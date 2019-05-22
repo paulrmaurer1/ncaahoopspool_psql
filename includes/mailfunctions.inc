@@ -1,44 +1,24 @@
-<!--PHP function that mails various messages to players -->
+<!--PHP function that mails various messages to players with standard mail() -->
 
 <?php
-function mailpassword($id, $mg, $domain)
-{
-    require ("misc.inc");
+function mailpassword($id)
+{require ("misc.inc");
     $query="SELECT email, password FROM player WHERE id='$id'";
-    $result=pg_exec($cxn,$query) or die ("Could not execute password lookup query");
-    $row=pg_fetch_assoc($result);
+    $result=mysqli_query($cxn,$query) or die ("Could not execute password lookup query");
+    $row=mysqli_fetch_assoc($result);
     extract($row);
 
-    /* Code for sending email via basic mail() functionality ***not being used*** */
-    // $to = $email;
-    // $subject = "Your password for NCAAHoopsPool.com";
-    // $message = "Here is your password: ".$password;
 
-    // /*build additional headers*/
-    // $headers .= 'From: Do-not-reply <admin@ncaahoopspool.com>';
+    /*populate basic mail info*/
+    $to = $email;
+    $subject = "Your password for NCAAHoopsPool.com";
+    $message = "Here is your password: ".$password;
 
-    // /*mail the message*/
-    // mail($to, $subject, $message, $headers);
+    /*build additional headers*/
+    $headers .= 'From: Do-not-reply <admin@ncaahoopspool.com>';
 
-    /* Code for sending email via mailgun-php library ***not being used*** */
-    $mg->sendMessage($domain, array(
-        'from'=>'admin@ncaahoopspool.com',
-        'to'=>$email,
-        'subject'=>'Your password for NCAAHoopsPool.com',
-        'text'=>'Here is your password: '.$password,
-        )
-    );
-
-    /* Code for sending email via guzzle and mailgun HTTP service */
-
-    // $response = $client->send($request, [
-    //     'from' => 'admin@ncaahoopspool.com',
-    //     'to' => $email,
-    //     'subject' => 'Your password for NCAAHoopsPool.com',
-    //     'text' => 'Here is your password: '.$password,
-    //     'html' => '<b>HTML</b> version of the body!'
-    // ]);
-
+    /*mail the message*/
+    mail($to, $subject, $message, $headers);
 }
 ?>
 
