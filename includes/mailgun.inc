@@ -1,6 +1,4 @@
 <?php 
-	/* Load Composer dependencies */
-	require_once ("../../vendor/autoload.php");
 
 	/* Load Mailgun Class */
 	use Mailgun\Mailgun;

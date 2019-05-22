@@ -1,4 +1,7 @@
 <?php
+	/* Load Composer dependencies */
+	require_once ("vendor/autoload.php");
+
     /* Start session */
 	ob_start();
 	session_start();
