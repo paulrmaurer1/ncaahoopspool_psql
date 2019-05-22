@@ -1,0 +1,478 @@
+/*
+CSS for ncaahoopspool.com site
+*/
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    color: blue;
+    font-weight: bold;
+}
+html { 
+    margin: 0; padding: 0; 
+}
+
+
+body {
+    background-color: #FDF5E6;
+    margin: 0; padding: 0; 
+}
+
+/******* Wrapper style for site *******/
+#wrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 960px;
+    background:url(images/bg.png) repeat-y 0 0;
+}
+
+
+/****** Header CSS style ******/
+#header {
+    background:url(images/ncaaheaderimage_960x100.png);
+    position: relative;
+    width: 960px;
+    height: 100px;
+    margin-top: 0;
+    padding: 0;
+    text-align: right;
+    vertical-align: text-bottom;
+/*    border: 2px dashed blue;*/
+}
+
+#header a {
+    text-decoration: none;
+}
+
+#header a.logout {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-small;
+    text-decoration: underline;
+    color: white;
+}
+
+#header h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-small;
+    color: white;
+}
+
+#footer {
+    clear: both;
+    height: 30px;
+    background:url(images/footer_960x30.png);
+    text-align: center;
+    vertical-align: bottom;
+}
+
+#footer h3 {
+    display: inline-block;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+}
+
+/****** Left menu bar CSS style ******/
+#menu {
+    float: left;
+    margin-top: 15px;
+    margin-left: 5px;
+/*    border: 2px dashed green;*/
+}
+
+#menu a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: blue;
+    text-decoration: none;
+}
+
+#summary #menu a.summary, #roster #menu a.roster, #help #menu a.help,
+#games1 #menu a.games, #games2 #menu a.games, #games3 #menu a.games, #games4 #menu a.games, #games5 #menu a.games, #games6 #menu a.games, #games7 #menu a.games, #games8 #menu a.games, #games9 #menu a.games, #games10 #menu a.games, #games11 #menu a.games, #games12 #menu a.games, #games13 #menu a.games, #games14 #menu a.games, #games15 #menu a.games, #games16 #menu a.games, #games17 #menu a.games, #games18 #menu a.games,
+#picks1 #menu a.picks, #picks2 #menu a.picks, #picks3 #menu a.picks, #picks4 #menu a.picks, #picks5 #menu a.picks, #picks6 #menu a.picks, #picks7 #menu a.picks, #picks8 #menu a.picks, #picks9 #menu a.picks, #picks10 #menu a.picks, #picks11 #menu a.picks, #picks12 #menu a.picks, #picks13 #menu a.picks, #picks14 #menu a.picks, #picks15 #menu a.picks, #picks16 #menu a.picks, #picks17 #menu a.picks, #picks18 #menu a.picks,
+#winners1 #menu a.winners, #winners2 #menu a.winners, #winners3 #menu a.winners, #winners4 #menu a.winners, #winners5 #menu a.winners, #winners6 #menu a.winners, #winners7 #menu a.winners, #winners8 #menu a.winners, #winners9 #menu a.winners, #winners10 #menu a.winners, #winners11 #menu a.winners, #winners12 #menu a.winners, #winners13 #menu a.winners, #winners14 #menu a.winners, #winners15 #menu a.winners, #winners16 #menu a.winners, #winners17 #menu a.winners, #winners18 #menu a.winners
+{
+    color: white;
+    background-color: blue;
+}
+
+#menu a.gamessub1, #menu a.gamessub2, #menu a.gamessub3, #menu a.gamessub4, #menu a.gamessub5, #menu a.gamessub6, #menu a.gamessub7, #menu a.gamessub8, #menu a.gamessub9, #menu a.gamessub10, #menu a.gamessub11, #menu a.gamessub12, #menu a.gamessub13, #menu a.gamessub14, #menu a.gamessub15, #menu a.gamessub16, #menu a.gamessub17, #menu a.gamessub18,
+#menu a.pickssub1, #menu a.pickssub2, #menu a.pickssub3, #menu a.pickssub4, #menu a.pickssub5, #menu a.pickssub6, #menu a.pickssub7, #menu a.pickssub8, #menu a.pickssub9, #menu a.pickssub10, #menu a.pickssub11, #menu a.pickssub12, #menu a.pickssub13, #menu a.pickssub14, #menu a.pickssub15, #menu a.pickssub16, #menu a.pickssub17, #menu a.pickssub18,
+#menu a.winnerssub1, #menu a.winnerssub2, #menu a.winnerssub3, #menu a.winnerssub4, #menu a.winnerssub5, #menu a.winnerssub6, #menu a.winnerssub7, #menu a.winnerssub8, #menu a.winnerssub9, #menu a.winnerssub10, #menu a.winnerssub11, #menu a.winnerssub12, #menu a.winnerssub13, #menu a.winnerssub14, #menu a.winnerssub15, #menu a.winnerssub16, #menu a.winnerssub17, #menu a.winnerssub18
+{
+    font-size: small;
+    color: blue;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+#games1 #menu a.gamessub1, #games2 #menu a.gamessub2, #games3 #menu a.gamessub3, #games4 #menu a.gamessub4,#games5 #menu a.gamessub5, #games6 #menu a.gamessub6, #games7 #menu a.gamessub7, #games8 #menu a.gamessub8, #games9 #menu a.gamessub9,#games10 #menu a.gamessub10, #games11 #menu a.gamessub11, #games12 #menu a.gamessub12, #games13 #menu a.gamessub13, #games14 #menu a.gamessub14,#games15 #menu a.gamessub15, #games16 #menu a.gamessub16, #games17 #menu a.gamessub17, #games18 #menu a.gamessub18,
+#picks1 #menu a.pickssub1, #picks2 #menu a.pickssub2, #picks3 #menu a.pickssub3, #picks4 #menu a.pickssub4,#picks5 #menu a.pickssub5, #picks6 #menu a.pickssub6, #picks7 #menu a.pickssub7, #picks8 #menu a.pickssub8, #picks9 #menu a.pickssub9,#picks10 #menu a.pickssub10, #picks11 #menu a.pickssub11, #picks12 #menu a.pickssub12, #picks13 #menu a.pickssub13, #picks14 #menu a.pickssub14,#picks15 #menu a.pickssub15, #picks16 #menu a.pickssub16, #picks17 #menu a.pickssub17, #picks18 #menu a.pickssub18,
+#winners1 #menu a.winnerssub1, #winners2 #menu a.winnerssub2, #winners3 #menu a.winnerssub3, #winners4 #menu a.winnerssub4,#winners5 #menu a.winnerssub5, #winners6 #menu a.winnerssub6, #winners7 #menu a.winnerssub7, #winners8 #menu a.winnerssub8, #winners9 #menu a.winnerssub9,#winners10 #menu a.winnerssub10, #winners11 #menu a.winnerssub11, #winners12 #menu a.winnerssub12, #winners13 #menu a.winnerssub13, #winners14 #menu a.winnerssub14,#winners15 #menu a.winnerssub15, #winners16 #menu a.winnerssub16, #winners17 #menu a.winnerssub17, #winners18 #menu a.winnerssub18
+{
+    color: white;
+    background-color: blue;
+    margin-left: 5px;
+}
+
+#menu a:hover {
+    color: white;
+    background-color: blue;
+}
+
+/****** Display Area body-content CSS style ******/
+
+#body-content {
+    float: right;
+    width: 810px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    /*    border: 2px dashed red;*/
+}
+
+#body-content p.errors {
+    color: red;
+}
+
+#body-content p.success {
+    color: green;
+}
+
+#body-content a.order, a:link.order, a:hover.order, a:visited.order, a:active.order {
+    color: blue;
+}
+
+/******* Body Content styles (main area where user display changed)*****/
+
+
+/******* Roster Table style*****/
+#body-content table.roster {
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    width: 700px;
+}
+
+#body-content table.roster th {
+    background: blue;
+    text-align:left;
+    color: white;
+    }
+    
+#body-content table.roster th.name {
+        width: 150px;    
+    }
+
+#body-content table.roster th.email {
+        width: 200px;
+}    
+
+#body-content table.roster th.team {
+        width: 400px;
+}
+
+#body-content table.roster th.wins {
+        width: 50px;
+}
+
+#body-content table.roster th.action {
+        width: 50px;
+}
+
+#body-content table.roster tr {
+        border-bottom: 1px solid black;
+    }
+    
+#body-content table.roster td {
+        padding-left:2px;
+        padding-right:2px;
+        padding-top:4px;
+        padding-bottom:4px;
+}
+
+/******Label style for form entities*****/
+#body-content label {
+    float: left;
+    width: 100px;
+}
+
+#body-content p.submit {
+
+}
+
+#body-content input.savebuttons {
+    padding: 4px;
+    width: 12em;
+    margin-right:20px;
+}
+
+#body-content label.radiolabel {
+    float: right;
+    text-align: left;
+    padding-top: 2px;
+}
+
+/******* Games Form style*****/
+#body-content table.games {
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    width: 800px;
+}
+
+#body-content table.games th {
+    background: blue;
+    text-align:left;
+    color: white;
+    }
+
+#body-content table.games th.locale {
+        width: 150px;    
+    }
+
+#body-content table.games th.date {
+        width: 175px;    
+    }
+
+#body-content table.games th.opponent {
+        width: 275px;
+}
+
+#body-content table.games tr {
+        border-bottom: 1px solid black;
+    }
+    
+#body-content table.games td {
+        padding-left:2px;
+        padding-right:2px;
+        padding-top:4px;
+        padding-bottom:4px;
+}
+
+/******* Picks Form style*****/
+#body-content table.picks {
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    width: 700px;
+}
+
+#body-content table.picks th {
+    background: blue;
+    text-align:left;
+    color: white;
+    }
+
+#body-content table.picks th.team {
+        width: 250px;    
+    }
+
+#body-content table.picks th.opponent {
+        width: 250px;
+}
+
+#body-content table.picks tr {
+        border-bottom: 1px solid black;
+    }
+    
+#body-content table.picks td {
+        padding-left:2px;
+        padding-right:2px;
+        padding-top:6px;
+        padding-bottom:6px;
+}
+
+#body-content table.picks td.picked {
+        font-weight: bold; 
+}
+
+#body-content table.picks td.won {
+        font-weight: bold;
+        color:green;
+}
+
+#body-content table.picks td.missed {
+        color:green;
+}
+
+#body-content table.picks td.wrong {
+        color:red;
+        text-decoration: line-through;
+}
+
+
+/******* Summary Table style*****/
+#body-content table.summary {
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    width: 800px;
+}
+
+#body-content table.summary th, th a {
+    background: blue;
+    text-align:left;
+    color: white;
+    text-decoration: none;
+    }
+    
+#body-content table.summary th.name {
+        width: 200px;    
+    }
+
+#body-content table.summary th.team {
+        width: 350px;
+}
+
+#body-content table.summary th.precord {
+        width: 75px;
+}
+
+#body-content table.summary th.wrecord {
+        width: 75px;
+}
+
+#body-content table.summary th.week {
+        width: 75px;
+        text-align: center;
+}
+
+#body-content table.summary tr {
+        border-bottom: 1px solid black;
+    }
+
+#body-content table.summary tr.highlightrow {
+        background: #FFFFCC;
+    }
+    
+#body-content table.summary td {
+        padding-left:2px;
+        padding-right:2px;
+        padding-top:4px;
+        padding-bottom:4px;
+}
+
+#body-content table.summary td a.weeklyrecords {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        text-decoration: underline;
+        color: blue;
+}
+
+#body-content table.summary td a.boldweeklyrecords {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        text-decoration: underline;
+        color: blue;
+        font-weight: bold;
+}
+
+#body-content table.summary td.centerweeklyrecords {
+    text-align: center;
+}
+    
+
+/******* Table Caption Div styles*****/
+
+#tablecaption {
+        clear: both;
+        text-align: center;
+        line-height: 25%;
+        margin-top: 10px;
+}
+
+#tablecaption h4 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: x-small;
+        display: inline;
+        text-align: center;
+}
+
+
+#tablecaption h4.correct {
+        color: green;
+        font-weight: bold;
+}
+
+#tablecaption h4.wrong {
+        color: red;
+        text-decoration: line-through;
+}
+
+#tablecaption h4.blue {
+        color: blue;
+        font-weight: bold;    
+}
+
+#tablecaption h4.blueunderline {
+        color: blue;
+        text-decoration: underline;    
+}
+
+/******* Help Div styles*****/
+#body-content #helpcontent {
+    padding-right: 120px;
+}
+
+#body-content #helpcontent h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight: normal;
+}
+
+#body-content #helpcontent li {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight: normal;
+    list-style: square;
+    margin-bottom: 6px;
+}
+
+/********* Message Box for Admin Email messages styles *****/
+#body-content #messagebox {
+    width: 600px;
+    position: absolute;
+    left: 180px;
+    bottom: 180px;
+    border-style: solid;
+    border-color: blue;
+    padding: 10px 10px 10px 10px;	
+    background-color: rgb(255,255,255);
+}
+
+#body-content #messagebox textarea {
+    margin-left: 30px;
+}
+
+#body-content #messagebox #email_subject {
+    margin-left: 30px;
+    width: 500px;
+}
+
+#body-content #messagebox #submit_button {
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+#body-content #messagebox h2 {
+    font-size: small;
+    font-weight: bold;
+}
+
+#body-content #messagebox h3 {
+    float: right;
+    position: relative;
+    margin-right: 180px;
+    font-size: small;
+    font-weight: normal;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    line-height: -12px;
+}
+
+
+
+
+

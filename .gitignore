@@ -1,0 +1,6 @@
+# Composer stuff
+/vendor
+
+# Database connection stuff
+/includes/misc_heroku.inc
+/includes/misc_local.inc
