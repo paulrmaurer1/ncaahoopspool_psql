@@ -1,4 +1,10 @@
 <?php 
+	/* Load Composer dependencies */
+	require_once ("../vendor/autoload.php");
+
+	/* Load Mailgun Class */
+	use Mailgun\Mailgun;
+
 	/* Heroku Mailgun settings */
 	$api_key = getenv('MAILGUN_API_KEY');
 	$domain = getenv('MAILGUN_DOMAIN');

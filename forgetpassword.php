@@ -8,21 +8,11 @@ if (! isset($_SESSION['logname']))
     session_start();
 }
 
-/* Load Composer dependencies */
-require_once ("vendor/autoload.php");
-
-/* Load Guzzle Classes - http sending service */
-// use GuzzleHttp\Client;
-// use GuzzleHttp\Psr7\Request;
-
-/* Load Mailgun Class */
-use Mailgun\Mailgun;
-
+include_once("includes/mailgun.inc");
 include_once("includes/head.inc");
 include_once("includes/misc.inc");
 include_once("includes/mailfunctions.inc");
 include_once("includes/checklogininfo.inc");
-include_once("includes/mailgun.inc");
 ?>
 
 <body>
