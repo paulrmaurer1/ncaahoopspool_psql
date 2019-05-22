@@ -50,7 +50,7 @@ if($_POST)
 		/* Mailgun code */
 		$mg = new Mailgun($api_key);
 
-		$mg->sendMessage($mailgun_domain, array(
+		$mg->sendMessage($domain, array(
         'from'=>'admin@ncaahoopspool.com',
         'to'=>'pmaurer@igojet.com',
         'subject'=>'Test message from NCAAHoopsPool.com',
