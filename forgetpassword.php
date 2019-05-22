@@ -2,17 +2,20 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
-// ob_start();
-if (! isset($_SESSION['logname']))
-{
-    session_start();
-}
+	// ob_start();
+	if (! isset($_SESSION['logname']))
+	{
+	    session_start();
+	}
 
-include_once("includes/mailgun.inc");
-include_once("includes/head.inc");
-include_once("includes/misc.inc");
-include_once("includes/mailfunctions.inc");
-include_once("includes/checklogininfo.inc");
+	/* Load Mailgun Class */
+	use Mailgun\Mailgun;
+
+	include_once("includes/head.inc");
+	include_once("includes/misc.inc");
+	include_once("includes/mailgun.inc");
+	include_once("includes/mailfunctions.inc");
+	include_once("includes/checklogininfo.inc");
 ?>
 
 <body>
