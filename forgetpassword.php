@@ -52,7 +52,7 @@ if($_POST)
 
 		$mg->sendMessage($mailgun_domain, array(
         'from'=>'admin@ncaahoopspool.com',
-        'to'=>'paulrmaurer@yahoo.com',
+        'to'=>'pmaurer@igojet.com',
         'subject'=>'Test message from NCAAHoopsPool.com',
         'text'=>'Test message body'
         )
@@ -60,7 +60,7 @@ if($_POST)
 		echo $response;
 	    // mailpassword($id, $mg, $mailgun_domain);
 
-	    // header("Location: login.php");
+	    header("Location: login.php");
 	}
         else
         {
