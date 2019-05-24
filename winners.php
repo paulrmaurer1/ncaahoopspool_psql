@@ -31,6 +31,13 @@ if($_SESSION['auth']!= "yes")
 </head>
 
 <?php
+/* Load Composer dependencies */
+require_once ("vendor/autoload.php");
+/* Load Mailgun Class */
+use Mailgun\Mailgun;
+/* Load mailgun environment variables and parameter functions */
+include_once("includes/mailgun.inc");
+
 /*include_once("includes/head_winners.inc");*/
 include_once("includes/misc.inc");
 include_once("includes/mailfunctions.inc");
@@ -239,8 +246,20 @@ if (isset($_POST['winners']))
     $emailsubject = $_POST['email_subject'];
     if ($_POST['display_button']=="Edit Games") {header("Location: games.php?week=$currentweekid");} /*If clicked just 'Save' redirect back to games.php page*/
     if ($_POST['display_button']=="Save, Update Summary") {echo "<p class='success'>Games results and the Overall Summary have been successfully updated!</p>";}
-    if ($_POST['display_button']=="Email Schedule to ALL") {mailschedule($currentweekid, 1, $emailmessage, $emailsubject); echo "<p class='success'>Emails have been sent to the entire roster!</p>";}
-    if ($_POST['display_button']=="Email to List Below") {mailschedule($currentweekid, 0, $emailmessage, $emailsubject); echo "<p class='success'>Emails have been sent to the players who have not submitted picks yet!</p>";}
+    if ($_POST['display_button']=="Email Schedule to ALL") {
+        // mailschedule($currentweekid, 1, $emailmessage, $emailsubject); 
+        $mg = new Mailgun($api_key);
+        $parameters = mg_mailreminder_parameters($currentweekid, 1, $emailmessage, $emailsubject);
+        $mg->sendMessage($domain, $parameters);
+        echo "<p class='success'>Emails have been sent to the entire roster!</p>";
+    }
+    if ($_POST['display_button']=="Email to List Below") {
+        // mailschedule($currentweekid, 0, $emailmessage, $emailsubject); 
+        $mg = new Mailgun($api_key);
+        $parameters = mg_mailreminder_parameters($currentweekid, 0, $emailmessage, $emailsubject);
+        $mg->sendMessage($domain, $parameters);
+        echo "<p class='success'>Emails have been sent to the players who have not submitted picks yet!</p>";
+    }
 }
 
 

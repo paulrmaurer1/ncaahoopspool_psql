@@ -12,10 +12,11 @@
 	require_once ("vendor/autoload.php");
 	/* Load Mailgun Class */
 	use Mailgun\Mailgun;
-
+	/* Load mailgun environment variables and parameter functions */
+	include_once("includes/mailgun.inc");
+	
 	include_once("includes/head.inc");
 	include_once("includes/misc.inc");
-	include_once("includes/mailgun.inc");
 	// include_once("includes/mailfunctions.inc");
 	include_once("includes/checklogininfo.inc");
 ?>
@@ -41,16 +42,17 @@ include_once("includes/title.inc");
 			/* Send email with Mailgun */
 			$mg = new Mailgun($api_key);
 			$parameters = mg_mailpassword_parameters($id);
-
 			$mg->sendMessage($domain, $parameters);
 		    
 		    /* mailfunctions.inc function */
 		    // mailpassword($id);
 
+		    /* Return user to Login Page */
 		    header("Location: login.php");
 		}
 	        else
 	        {
+	        	/* Show error messages created within checklogininfo() */
 	            echo $message;
 	        }
 	}
