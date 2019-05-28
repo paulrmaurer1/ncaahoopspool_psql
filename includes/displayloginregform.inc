@@ -1,4 +1,4 @@
-<!--block of code that display Login and Registration fiels on one page-->
+<!--block of code that display Login and Registration fields on one page-->
 <h3>Login here</h3>
 <?php
     if(($_POST) and ($_POST['logreg_button'] == "Login"))

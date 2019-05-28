@@ -1,8 +1,9 @@
 <!--PHP program that checks Registration fields -->
 
 <?php
-function checkreginfo($formfields)
-{   require ("misc.inc");
+function checkRegInfo($formfields)
+{   
+    require ("misc.inc");
     
     $firstpassword="";
     $num=0; /*check var for existing email address*/

@@ -1,8 +1,9 @@
 <!--PHP program that checks Login fields -->
 
 <?php
-function checklogininfo($formfields)
-{   require ("misc.inc");
+function checkLoginInfo($formfields)
+{   
+    require ("misc.inc");
             
     $num2=1; /*if password isn't submitted with form (forgetpassword.php) then make sure $num2 doesn't cause error messages*/
 

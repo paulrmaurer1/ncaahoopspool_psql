@@ -244,19 +244,25 @@ if (isset($_POST['winners']))
     $currentweekid=$_GET['week'];
     $emailmessage = $_POST['email_message'];
     $emailsubject = $_POST['email_subject'];
-    if ($_POST['display_button']=="Edit Games") {header("Location: games.php?week=$currentweekid");} /*If clicked just 'Save' redirect back to games.php page*/
-    if ($_POST['display_button']=="Save, Update Summary") {echo "<p class='success'>Games results and the Overall Summary have been successfully updated!</p>";}
+    if ($_POST['display_button']=="Edit Games") {
+        /*If clicked just 'Save' redirect back to games.php page*/
+        header("Location: games.php?week=$currentweekid");
+    } 
+    if ($_POST['display_button']=="Save, Update Summary") {
+        /*If clicked just 'Save, Update Summary' save changes and stay on page*/
+        echo "<p class='success'>Games results and the Overall Summary have been successfully updated!</p>";
+    }
     if ($_POST['display_button']=="Email Schedule to ALL") {
         // mailschedule($currentweekid, 1, $emailmessage, $emailsubject); 
         $mg = new Mailgun($api_key);
-        $parameters = mg_mailreminder_parameters($currentweekid, 1, $emailmessage, $emailsubject);
+        $parameters = mgMailReminderParameters($currentweekid, 1, $emailmessage, $emailsubject);
         $mg->sendMessage($domain, $parameters);
         echo "<p class='success'>Emails have been sent to the entire roster!</p>";
     }
     if ($_POST['display_button']=="Email to List Below") {
         // mailschedule($currentweekid, 0, $emailmessage, $emailsubject); 
         $mg = new Mailgun($api_key);
-        $parameters = mg_mailreminder_parameters($currentweekid, 0, $emailmessage, $emailsubject);
+        $parameters = mgMailReminderParameters($currentweekid, 0, $emailmessage, $emailsubject);
         $mg->sendMessage($domain, $parameters);
         echo "<p class='success'>Emails have been sent to the players who have not submitted picks yet!</p>";
     }
@@ -275,7 +281,7 @@ echo "Select winners for this week<br/><br/>";
 echo "<form action=\"winners.php?week=".$currentweekid."\" method = 'POST'>";
     include_once("includes/displaypicksform.inc"); /*display Pick Games form*/
 
-    /*build default subject line for form below*/
+    /*Build default subject line for outgoing emails and prompt in messagebox: email_subject*/
     $query = "SELECT deadline_date FROM weeks WHERE num=$currentweekid";
     $result = pg_exec($cxn, $query) or die ("Couldn't execute firstname, lastname lookup from player table for mail.");
     $row=pg_fetch_assoc($result);
@@ -283,7 +289,7 @@ echo "<form action=\"winners.php?week=".$currentweekid."\" method = 'POST'>";
     
     $subject = "Week ".$currentweekid." schedule. Please submit your picks by ".date('l\,\ M j',strtotime($deadline_date)).".";
 ?>
-<!--Pop-up message box that gets prompted before sending emails-->
+<!--Pop-up message box that gets prompted when admin clicks 'Email Players' from Update Results page -->
 <div id="messagebox">
         <h2>Enter your email Subject:</h2>
         <input type="text" name="email_subject" id="email_subject" value="<?php echo $subject ?>"/>
