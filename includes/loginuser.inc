@@ -1,5 +1,4 @@
 <!--PHP program that logs in a user -->
-
 <?php
 	function loginUser($login_email)
 	{  

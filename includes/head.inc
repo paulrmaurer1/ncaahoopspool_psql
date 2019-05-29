@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCAAHoopsPool.com</title>
     <link href="style1.css" rel="stylesheet" type="text/css"/>
+    <script src="_js/jquery-1.7.2.min.js"></script>
     
     <!--Google Analytics Code snippet-->
 <!--     <script type="text/javascript">

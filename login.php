@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="en">
 <?php
-    if (! isset($_SESSION['logname']))
-    {
+    if (! isset($_SESSION['logname'])) {
         // start session in order to record login or register session variables
         session_start();
     }
