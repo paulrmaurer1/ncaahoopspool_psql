@@ -103,8 +103,8 @@
                     }
                     else {$tiebreakerpts=0;}
                 }
-            echo "<tr><td></td><td></td><td></td><td><label for='tiebreakerpts'>Tiebreaker Game Points Total:</label>";
-            echo "<input type='number' name='tiebreakerpts' id='tiebreakerpts' size='5' maxlength='3' value=$tiebreakerpts></td><td></td>\n";
+            echo "<tr><td></td><td></td><td colspan=\"3\">* Tiebreaker Game Points Total:&nbsp";
+            echo "<input type='number' name='tiebreakerpts' id='tiebreakerpts' size='5' maxlength='3' value=$tiebreakerpts></td>\n";
             echo "</tr>\n";
         ?>
     </tbody>

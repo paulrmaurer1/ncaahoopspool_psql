@@ -12,7 +12,6 @@
 
     include_once("includes/head.inc");
     include_once("includes/misc.inc");
-    include_once("includes/outcomesfunctions.inc");
 
     echo "<body id=\"games".$_GET['week']."\">\n";
     echo "<div id=\"wrapper\">\n";

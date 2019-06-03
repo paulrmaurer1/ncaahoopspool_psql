@@ -1,7 +1,7 @@
 <!--PHP function that displays a players pick results based on game outcomes -->
 
 <?php
-function displayoutcomes($weeknum, $playerid)
+function displayoutcomes($weeknum, $playerid, $showfieldrecords)
 {   require ("misc.inc");
     
     /*display first and last name of player whose picks are being shown*/
@@ -20,8 +20,16 @@ function displayoutcomes($weeknum, $playerid)
             echo "<th></th>\n";
             echo "<th class=\"tiebreaker\">TB</th>\n";
             echo "<th class=\"date\">Date</th>\n";
-            echo "<th class=\"team\">Team</th>\n";
-            echo "<th class=\"opponent\">Opponent</th>\n";
+            echo "<th class=\"team\">Team";
+            if ($showfieldrecords) {
+                    echo "&nbsp(Field picks)";
+                }
+            echo "</th>\n";
+            echo "<th class=\"opponent\">Opponent";
+            if ($showfieldrecords) {
+                    echo "&nbsp(Field picks)";
+                }
+            echo "</th>\n";
         echo "</tr>\n";
     echo "</thead>\n";
     /*display table body*/
@@ -48,6 +56,21 @@ function displayoutcomes($weeknum, $playerid)
                 
                 /*display date for each game*/
                 echo "<td>".date('F jS Y',strtotime($gamedate))."</td>\n";
+
+                /* Determine field pick records*/
+                $fquery = "
+                    SELECT 
+                        sum(case when p1.pick = 1 then 1 else 0 end) as teampicks
+                        ,sum(case when p1.pick = 2 then 1 else 0 end) as oppteampicks
+
+                    FROM 
+                        picks as p1
+                    WHERE 
+                        game_id=$id
+                ";
+                $fresult = pg_exec($cxn, $fquery) or die ("Couldn't execute field pick record query.");
+                $frow=pg_fetch_assoc($fresult);
+                extract($frow);
                 
                 /*determine Team name*/
                 if ($locale==1) {$homeat="at";} else {$homeat="";}
@@ -100,8 +123,16 @@ function displayoutcomes($weeknum, $playerid)
                     $oppdisplay="class=\"missed\">";
                 }
                 /*display Team and Opponent with proper styling*/
-                echo "<td ".$teamdisplay."$homeat $playerteam</td>\n";
-                echo "<td ".$oppdisplay."$awayat $opponentteam</td>\n";
+                echo "<td ".$teamdisplay."$homeat $playerteam";
+                if ($showfieldrecords) {
+                        echo "&nbsp($teampicks)";
+                    } 
+                echo "</td>\n";
+                echo "<td ".$oppdisplay."$awayat $opponentteam";
+                 if ($showfieldrecords) {
+                        echo "&nbsp($oppteampicks)";
+                    }
+                echo "</td>\n";
         }
         /*display games and values from games table for teams without games (locale=0)*/
         $query = "SELECT * FROM games WHERE week_num=$weeknum AND locale=0"; /* */
@@ -125,17 +156,24 @@ function displayoutcomes($weeknum, $playerid)
             /*display that there is no game this week for this Team*/
             echo "<td><span style=\"font-style:italic\">No game this week</span></td></tr>\n";
         }
-        $query = "SELECT picks.tiebreakerpts FROM picks INNER JOIN games ON picks.game_id=games.id WHERE games.week_num=$weeknum AND
-            games.tiebreaker=1 AND picks.player_id=$playerid";
+
+        $query = "SELECT picks.tiebreakerpts, games.tiebreakerpts FROM picks INNER JOIN games ON picks.game_id=games.id WHERE games.week_num=$weeknum AND games.tiebreaker=1 AND picks.player_id=$playerid";
             $result = pg_exec($cxn, $query) or die ("Couldn't execute team lookup query for tiebreakerpts.");
-            if (pg_numrows($result)>0)
-            {
+            if (pg_numrows($result)>0) {
                 $row=pg_fetch_row($result);
                 $tiebreakerpts=$row[0];
+                $actualtiebreakerpts=$row[1];
+            } else {
+                $tiebreakerpts=0;
+                $actualtiebreakerpts=0;
             }
-            else {$tiebreakerpts=0;}
-            echo "<tr><td></td><td></td><td></td><td><b>Tiebreaker Game Points Total:</b> $tiebreakerpts</td><td></td>\n";
-            echo "</tr>\n";
+            $gamediff = $tiebreakerpts-$actualtiebreakerpts;
+
+            echo "<tr><td></td><td></td><td colspan=\"3\"><b>* Tiebreaker Game Points Total:</b> $tiebreakerpts";
+            if ($actualtiebreakerpts>0) {
+                echo "($gamediff)&nbsp&nbsp&nbsp<b>Actual Total:</b> $actualtiebreakerpts";
+            }
+            echo "</td>\n</tr>\n";
     echo "</tbody>";
     echo "</table>";
     echo "<div id=\"tablecaption\">";
@@ -143,25 +181,4 @@ function displayoutcomes($weeknum, $playerid)
     echo    "<h4 class=\"wrong\">x [Teamname] = wrong pick</h3>";
     echo "</div>";
 }
-?>
-
-<!--Function to determine # wins for a player for a given week (NOT CURRENTLY BEING USED SINCE RECORD WEEKLY RECORD IN weeks_won TABLE-->
-<?php
-function detnumwinpicks($weeknum, $playerid)
-{   require ("misc.inc");
-    
-    $wincounter=0;
-    $query = "SELECT picks.pick_result FROM picks INNER JOIN games ON games.id=picks.games_id WHERE games.week_num=$weeknum AND picks.player_id=$playerid";
-    $result = pg_exec($cxn, $query) or die ("Couldn't execute games table query.");
-    while ($row=pg_fetch_assoc($result)) 
-    {
-        extract($row);
-        if ($pick_result=1)
-        {
-            $wincounter=$wincounter+1;          
-        }
-    }
-    return $wincounter;
-}
-
-    
+?>    

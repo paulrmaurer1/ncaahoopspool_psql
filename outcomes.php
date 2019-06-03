@@ -12,7 +12,8 @@
 
 	include_once("includes/head.inc");
 	include_once("includes/misc.inc");
-	include_once("includes/outcomesfunctions.inc");
+	include_once("includes/displayoutcomes.inc");
+	include_once("includes/sharedqueries.inc");
 
 	echo "<body id=\"picks".$_GET['week']."\">\n";
 	echo "<div id=\"wrapper\">\n";
@@ -36,12 +37,18 @@
 		$viewingplayer=$_SESSION['logid'];
 	}
 
-	/*Set deadline date for current weeek*/
+	/*Set deadline date for current week*/
 	date_default_timezone_set('America/New_York');
 	$deadlinedatetime=date("Y-m-d H:i:s", strtotime($deadline_date." 12:00:00"));
 
+	/* If want to only show field picks when all players have made picks*/
+	$showfieldrecords = allPicksMade($currentweekid);
+
+	/* If want to only show field picks when current date beyond deadline + 1 day*/
+	// $showfieldrecords = $currentdatetime > date("Y-m-d H:i:s", strtotime($deadlinedatetime."+1 days"));
+
 	echo "<form action=\"picks.php?week=".$currentweekid."&player=".$viewingplayer."\" method = 'POST'>";
-		displayoutcomes($currentweekid, $viewingplayer); /*display game results table*/
+		displayoutcomes($currentweekid, $viewingplayer, $showfieldrecords); /*display game results table*/
 		if (($currentdatetime<=$deadlinedatetime AND $_SESSION['logid']==$viewingplayer) OR $_SESSION['logname']=='admin') {
 			echo "<p class=\"submit\"><input type=\"submit\" class=\"savebuttons\" name=\"display_button\" value=\"Edit\"/></p>";
 		}

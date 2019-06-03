@@ -1,4 +1,4 @@
 <div id="footer">
-	<h3>&copy 2012 All Rights Reserved.  PRM Website Productions.</h3>
+	<h3>&copy 2012-2019 All Rights Reserved.  Exit Zero Technologies, LLC</h3>
 </div>
 <p></p>

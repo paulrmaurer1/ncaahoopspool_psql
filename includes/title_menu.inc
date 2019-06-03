@@ -51,7 +51,7 @@
                     echo "<a class=\"winnerssub$num\" href=\"winners.php?week=$num\">Week $num</a><br />";
                 }
             }
-        } // end admin portion of menu
+        } // end Admin portion of menu
 
         // Non Admin portion of menu
         if ($_SESSION['logname']<>'admin') {
@@ -65,12 +65,12 @@
             while ($row=pg_fetch_assoc($result)) {
                 extract($row);
                 if ($num==$currentweek) {
-                    echo "<a class=\"pickssub$num\" href=\"picks.php?week=$num&player=".$_SESSION['logid']."\">Week $num*</a><br />";
+                    echo "<a class=\"pickssub$num\" href=\"picks.php?week=$num\">Week $num*</a><br />";
                 } else {
-                    echo "<a class=\"pickssub$num\" href=\"picks.php?week=$num&player=".$_SESSION['logid']."\">Week $num</a><br />";
+                    echo "<a class=\"pickssub$num\" href=\"picks.php?week=$num\">Week $num</a><br />";
                 }
             }
-        } // end non-admin portion of menu
+        } // end Non Admin portion of menu
     ?>
     <a class="roster" href="roster.php">Roster</a><br/>
     <a href="help.php">Help</a><br/><br/>

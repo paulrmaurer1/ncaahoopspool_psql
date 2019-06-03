@@ -11,10 +11,10 @@
     }
 ?>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCAAHoopsPool.com</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="style1.css" rel="stylesheet" type="text/css"/>
-    
     <script src="_js/jquery-1.7.2.min.js"></script>
     
     <script>
@@ -41,7 +41,6 @@
     /* Load mailgun environment variables and parameter functions */
     include_once("includes/mailgun.inc");
 
-    /*include_once("includes/head_winners.inc");*/
     include_once("includes/misc.inc");
     include_once("includes/mailfunctions.inc");
 

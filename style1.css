@@ -101,6 +101,7 @@ body {
 #menu a.gamessub1, #menu a.gamessub2, #menu a.gamessub3, #menu a.gamessub4, #menu a.gamessub5, #menu a.gamessub6, #menu a.gamessub7, #menu a.gamessub8, #menu a.gamessub9, #menu a.gamessub10, #menu a.gamessub11, #menu a.gamessub12, #menu a.gamessub13, #menu a.gamessub14, #menu a.gamessub15, #menu a.gamessub16, #menu a.gamessub17, #menu a.gamessub18,
 #menu a.pickssub1, #menu a.pickssub2, #menu a.pickssub3, #menu a.pickssub4, #menu a.pickssub5, #menu a.pickssub6, #menu a.pickssub7, #menu a.pickssub8, #menu a.pickssub9, #menu a.pickssub10, #menu a.pickssub11, #menu a.pickssub12, #menu a.pickssub13, #menu a.pickssub14, #menu a.pickssub15, #menu a.pickssub16, #menu a.pickssub17, #menu a.pickssub18,
 #menu a.winnerssub1, #menu a.winnerssub2, #menu a.winnerssub3, #menu a.winnerssub4, #menu a.winnerssub5, #menu a.winnerssub6, #menu a.winnerssub7, #menu a.winnerssub8, #menu a.winnerssub9, #menu a.winnerssub10, #menu a.winnerssub11, #menu a.winnerssub12, #menu a.winnerssub13, #menu a.winnerssub14, #menu a.winnerssub15, #menu a.winnerssub16, #menu a.winnerssub17, #menu a.winnerssub18
+
 {
     font-size: small;
     color: blue;
@@ -337,6 +338,7 @@ body {
 #body-content table.summary th.week {
         width: 75px;
         text-align: center;
+        font-size: x-small;
 }
 
 #body-content table.summary tr {

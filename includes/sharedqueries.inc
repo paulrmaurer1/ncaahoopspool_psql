@@ -40,3 +40,80 @@
         }
         return $latestweek;
     }
+
+    function getPlayerSortQuery($orderby, $latestweekwithatleast1completegame)
+    {
+        /*
+        This function returns the query string needed to properly sort Players on the Overall Summary table from index.php
+        */
+        switch ($orderby) {
+            case 0: /*sort by overall record*/
+                return "SELECT * FROM player WHERE email<>'admin' ORDER BY correct_picks DESC";
+            case 1: /*sort by current week's record*/
+                return "
+                    SELECT 
+                        p1.*
+                        ,ww1.week_correct_picks
+                        ,tiebreak.game_diff
+
+                    FROM player p1
+
+                    INNER JOIN weeks_won ww1
+                    ON p1.id = ww1.player_id
+                    
+                    JOIN
+                        (select 
+                            pi1.player_id
+                        ,ABS(pi1.tiebreakerpts - g1.tiebreakerpts) as game_diff
+                        ,g1.week_num
+                            
+                        from games g1
+                        join picks pi1
+                        on g1.id = pi1.game_id
+                        where 
+                            g1.week_num = $latestweekwithatleast1completegame
+                            and g1.tiebreaker <>0) as tiebreak
+                    ON p1.id = tiebreak.player_id and ww1.week_id = tiebreak.week_num
+                    
+                    WHERE p1.email<>'admin'
+                    
+                    ORDER BY ww1.week_correct_picks DESC, tiebreak.game_diff ASC
+                ";
+        }
+    }
+
+    function allPicksMade($currentweekid)
+    {
+        /*
+        This function returns a true/false based on whether all picks have been made for
+        a given week
+        */
+        require ("misc.inc");
+
+        $allpicksmade = true;
+
+        $query = "
+            SELECT 
+                g1.id
+                ,sum(case when p1.pick = 0 then 1 else 0 end) as missingpicks
+
+            FROM 
+                games as g1
+                join picks as p1
+                    on g1.id = p1.game_id
+            WHERE 
+                g1.week_num=$currentweekid
+                
+            GROUP BY 1
+        ";
+        $result = pg_exec($cxn, $query) or die ("Couldn't execute missingpicks query.");
+        while ($row=pg_fetch_assoc($result)) 
+        {
+            extract($row);
+            if ($missingpicks > 0) {
+                $allpicksmade = false;
+            }
+        }
+        return $allpicksmade;
+    }
+?>

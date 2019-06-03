@@ -45,6 +45,7 @@
             }
         }
     }
+    
     $currentweekid=$_GET['week'];
     if (isset($_POST['display_button'])) {
         /*If clicked 'Save and View' redirect to outcomes.php page*/
@@ -52,13 +53,13 @@
     }
 
     /*Retrieve current week parameters to display proper info and games on page*/
-    $currentweekid=$_GET['week'];
+    // $currentweekid=$_GET['week'];
     $query = "SELECT * FROM weeks WHERE num=$currentweekid";
     $result = pg_exec($cxn, $query) or die ("Couldn't execute weeks table query.");
     $row=pg_fetch_assoc($result);
     extract($row);
 
-    date_default_timezone_set('America/New_York');
+    // date_default_timezone_set('America/New_York');
     $deadlinedatetime=date("Y-m-d H:i:s", strtotime($deadline_date." 12:00:00"));
     		       
     if ($currentdatetime>$deadlinedatetime AND $_SESSION['logname']<>'admin') {
