@@ -23,7 +23,7 @@ To run a local version of this site:
 5) Create a new DB in postgresql
 6) Run the SQL script [create_tables_CLEAN_2019-2020_Season.sql](sql/create_tables_CLEAN_2019-2020_Season.sql) to create needed tables and initialize with NCAA Division 1 team and weekly pool data (2019-2020 season)
 7) Modify [misc.inc](includes/misc.inc) for your local DB credentials
-8) In your browser, navigate to localhost\'directory name from step #3'.index.php
+8) In your browser, navigate to localhost\\'directory name from step #3'.index.php
 
 To deploy to other platforms (e.g. Heroku), Composer will need to be installed. The only Composer dependency that this project supports is [Mailgun](https://www.mailgun.com/) for Forget Password & Admin Reminder emailing features.
 
