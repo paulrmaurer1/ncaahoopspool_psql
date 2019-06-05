@@ -3,10 +3,16 @@ CSS for ncaahoopspool.com site
 */
 
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: x-large;
-    color: blue;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: Avant Garde, Arial, sans-serif;
+    /*font-size: xx-large;*/
+    font-size: 300%;
+    color: rgb(75,156,211); /*Carolina Blue*/
     font-weight: bold;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin: 0;
+    text-align: left;
 }
 html { 
     margin: 0 !important; 
@@ -30,11 +36,11 @@ body {
 
 /****** Header CSS style ******/
 #header {
-    background:url(images/ncaaheaderimage_960x100.png);
+    background:url(images/ncaaheaderimage_plain_960x100.png);
     position: relative;
     width: 960px;
     height: 100px;
-    margin-top: 0;
+    margin: 0;
     padding: 0;
     text-align: right;
     vertical-align: text-bottom;

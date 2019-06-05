@@ -1,1 +1,5 @@
-<a href="login.php"><div id="header"></div></a>
+<div id="header">
+	<a href="login.php">
+		<h1>NCAAHoopsPool</h1>
+	</a>
+</div>

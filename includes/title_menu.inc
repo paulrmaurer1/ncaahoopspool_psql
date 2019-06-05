@@ -4,6 +4,9 @@
     echo "<h3>".$_SESSION['logname']."&nbsp&nbsp&nbsp";
     echo "<a class=\"logout\" href=\"login.php?logout=1\">Log out</a>&nbsp&nbsp</h3>";
 ?>
+    <a href="index.php">
+        <h1>NCAAHoopsPool</h1>
+    </a>
 </div>
     
 <div id="menu">
