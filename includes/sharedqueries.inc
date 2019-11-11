@@ -103,6 +103,7 @@
                     on g1.id = p1.game_id
             WHERE 
                 g1.week_num=$currentweekid
+                AND g1.locale <> 0
                 
             GROUP BY 1
         ";
