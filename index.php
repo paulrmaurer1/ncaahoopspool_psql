@@ -65,7 +65,7 @@
 					<th class="wrecord">Weeks Record</th>
 					<?php
 						// Display week nums across column headers
-						echo "<th><a href=\index.php?view=$previousview_id&orderby=$orderby\><<</a></th>";
+						echo "<th><a href=\"index.php?view=$previousview_id&orderby=$orderby\"><<</a></th>";
 						$query = "SELECT num FROM weeks WHERE num >= $fromweek AND num <= $toweek ORDER BY num ASC";
 						$result = pg_exec($cxn, $query) or die ("Couldn't execute week range query.");
 						while ($row=pg_fetch_assoc($result)) {
