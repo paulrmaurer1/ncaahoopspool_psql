@@ -42,7 +42,10 @@
 	$deadlinedatetime=date("Y-m-d H:i:s", strtotime($deadline_date." 12:00:00"));
 
 	/* If want to only show field picks when all players have made picks*/
-	$showfieldrecords = allPicksMade($currentweekid);
+	// $showfieldrecords = allPicksMade($currentweekid);
+
+	/* If want to only show field picks when logged in player has made picks for current week */
+	$showfieldrecords = allPicksMadeByPlayer($currentweekid, $_SESSION['logid']);
 
 	/* If want to only show field picks when current date beyond deadline + 1 day*/
 	// $showfieldrecords = $currentdatetime > date("Y-m-d H:i:s", strtotime($deadlinedatetime."+1 days"));

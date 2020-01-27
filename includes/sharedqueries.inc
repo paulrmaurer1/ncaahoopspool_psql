@@ -117,4 +117,41 @@
         }
         return $allpicksmade;
     }
+
+    function allPicksMadeByPlayer($currentweekid, $playerid)
+    {
+        /*
+        This function returns a true/false based on whether all picks have been made for
+        a given week by a given player
+        */
+        require ("misc.inc");
+
+        $allpicksmade = true;
+
+        $query = "
+            SELECT 
+                g1.id
+                ,sum(case when p1.pick = 0 then 1 else 0 end) as missingpicks
+
+            FROM 
+                games as g1
+                join picks as p1
+                    on g1.id = p1.game_id
+            WHERE 
+                g1.week_num=$currentweekid
+                AND g1.locale <> 0
+                AND p1.player_id=$playerid
+                
+            GROUP BY 1
+        ";
+        $result = pg_exec($cxn, $query) or die ("Couldn't execute missingpicks query.");
+        while ($row=pg_fetch_assoc($result)) 
+        {
+            extract($row);
+            if ($missingpicks > 0) {
+                $allpicksmade = false;
+            }
+        }
+        return $allpicksmade;
+    }
 ?>
