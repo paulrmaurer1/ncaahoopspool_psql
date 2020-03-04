@@ -39,16 +39,23 @@
 
 	/*Set deadline date for current week*/
 	date_default_timezone_set('America/New_York');
-	$deadlinedatetime=date("Y-m-d H:i:s", strtotime($deadline_date." 12:00:00"));
 
+	/*For testing can add or subtract days to deadeline_date*/
+	// $deadlinedatetime=date("Y-m-d H:i:s", strtotime($deadline_date." 12:00:00"."+ 2 days"));
+
+	$deadlinedatetime=date("Y-m-d H:i:s", strtotime($deadline_date." 12:00:00"));
+	
+	// echo "<h1>".$deadlinedatetime."</h1>";
+	
 	/* If want to only show field picks when all players have made picks*/
 	// $showfieldrecords = allPicksMade($currentweekid);
 
-	/* If want to only show field picks when logged in player has made picks for current week */
-	$showfieldrecords = allPicksMadeByPlayer($currentweekid, $_SESSION['logid']);
-
 	/* If want to only show field picks when current date beyond deadline + 1 day*/
 	// $showfieldrecords = $currentdatetime > date("Y-m-d H:i:s", strtotime($deadlinedatetime."+1 days"));
+
+	/* Only show field picks when logged in player has made all picks for current week */
+	/* AND is later than pick submission deadline for current week */
+	$showfieldrecords = allPicksMadeByPlayer($currentweekid, $_SESSION['logid']) && $currentdatetime>$deadlinedatetime;
 
 	echo "<form action=\"picks.php?week=".$currentweekid."&player=".$viewingplayer."\" method = 'POST'>";
 		displayoutcomes($currentweekid, $viewingplayer, $showfieldrecords); /*display game results table*/
