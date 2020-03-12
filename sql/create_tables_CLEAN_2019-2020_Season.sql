@@ -139,6 +139,7 @@ INSERT INTO weeks (id, num, name, from_date, to_date, deadline_date, num_games) 
 (18, 18, 'Week 18', '2020-03-02', '2020-03-08', '2020-03-02', 0);
 
 INSERT INTO teams (id, team_name, school, city, state, conference) VALUES
+(1, 'Lindenwood Lions (DII)', 'Lindenwood University', 'St. Charles', 'MO',  'Great Lakes Valley Conference'),
 (2, 'Akron Zips', 'University of Akron', 'Akron', 'Ohio', 'Mid-American Conference'),
 (3, 'Alabama Crimson Tide', 'University of Alabama', 'Tuscaloosa', 'Alabama', 'Southeastern Conference'),
 (4, 'Alabama A&M Bulldogs', 'Alabama Agricultural and Mechanical University', 'Huntsville', 'Alabama', 'Southwestern Athletic Conference'),
@@ -503,4 +504,6 @@ INSERT INTO teams (id, team_name, school, city, state, conference) VALUES
 (363, 'Cal State East Bay Pioneers', 'Cal State East Bay', 'Hayward', 'CA', 'California Collegiate Athletic Association'),
 (364, 'Life Pacific Warriors', 'Life Pacific College', 'San Dimas', 'CA', 'National Christian College Athletic Association'),
 (365, 'Stockton Ospreys (DIII)', 'Stockton University', 'Galloway', 'NJ', 'Eastern Collegiate Athletic Conference'),
-(366, 'Cal Baptist Lancers', 'California Baptist University', 'Riverside', 'CA', 'Western Athletic Conference');
+(366, 'Cal Baptist Lancers', 'California Baptist University', 'Riverside', 'CA', 'Western Athletic Conference'),
+(367, 'Pacific Union Pioneers (NAIA)', 'Pacific Union College', 'Angwin',  'CA',  'California Pacific Conference'),
+(368, 'Widener Pride (DIII)', 'Widener University', 'Chester', 'PA', 'Middle Atlantic Conference'),
