@@ -135,7 +135,7 @@ INSERT INTO weeks (id, num, name, from_date, to_date, deadline_date, num_games) 
 (14, 14, 'Week 14', '2022-02-07', '2022-02-13', '2022-02-07', 0),
 (15, 15, 'Week 15', '2022-02-14', '2022-02-20', '2022-02-14', 0),
 (16, 16, 'Week 16', '2022-02-21', '2022-02-27', '2022-02-21', 0),
-(17, 17, 'Week 17', '2022-02-28', '2022-03-06', '2022-02-28', 0),
+(17, 17, 'Week 17', '2022-02-28', '2022-03-06', '2022-02-28', 0)
 
 INSERT INTO teams (id, team_name, school, city, state, conference) VALUES
 (1, 'Lindenwood Lions (DII)', 'Lindenwood University', 'St. Charles', 'MO',  'Great Lakes Valley Conference'),
