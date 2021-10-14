@@ -6,7 +6,7 @@ function checkLoginInfo($formfields)
     require ("misc.inc");
             
     $num2=1; /*if password isn't submitted with form (forgetpassword.php) then make sure $num2 doesn't cause error messages*/
-    const $blank_array=[]
+    $blank_array=[]; /*create empty array to store form values*/
 
     foreach ($formfields as $field => $value)
     {
