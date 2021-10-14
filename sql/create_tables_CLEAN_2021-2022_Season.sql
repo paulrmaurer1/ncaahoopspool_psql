@@ -505,4 +505,4 @@ INSERT INTO teams (id, team_name, school, city, state, conference) VALUES
 (365, 'Stockton Ospreys (DIII)', 'Stockton University', 'Galloway', 'NJ', 'Eastern Collegiate Athletic Conference'),
 (366, 'Cal Baptist Lancers', 'California Baptist University', 'Riverside', 'CA', 'Western Athletic Conference'),
 (367, 'Pacific Union Pioneers (NAIA)', 'Pacific Union College', 'Angwin',  'CA',  'California Pacific Conference'),
-(368, 'Widener Pride (DIII)', 'Widener University', 'Chester', 'PA', 'Middle Atlantic Conference'),
+(368, 'Widener Pride (DIII)', 'Widener University', 'Chester', 'PA', 'Middle Atlantic Conference');
