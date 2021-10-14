@@ -143,7 +143,7 @@
         /*Determine the number of players who picked the most correct picks for a specific week*/
         $numwinnersquery = "SELECT id FROM weeks_won WHERE week_correct_picks='".$maxrow[0]."' AND week_id='".$_GET['week']."'";
         $numwinnersresult = pg_exec($cxn,$numwinnersquery) or die ("Could not execute num winners query");
-        $numwinners = pg_numrows($numwinnersresult);
+        $numwinners = pg_num_rows($numwinnersresult);
         
         /*Update the weeks_won week_result with winners, including ties*/
         $tbdiff=array();

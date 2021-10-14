@@ -24,7 +24,7 @@ function checkLoginInfo($formfields)
         {
             $query = "SELECT id FROM player WHERE email='$value'";
             $result = pg_exec($cxn,$query) or die ("Could not run check player email query");  
-            $num=pg_numrows($result);
+            $num=pg_num_rows($result);
             /*echo "result: ",$num;*/
         }
         /*check that password matches account*/
@@ -32,7 +32,7 @@ function checkLoginInfo($formfields)
         {
             $query = "SELECT id FROM player WHERE password='$value'";
             $result = pg_exec($cxn,$query) or die ("Could not run check player password query");
-            $num2=pg_numrows($result);
+            $num2=pg_num_rows($result);
         }
     }
 

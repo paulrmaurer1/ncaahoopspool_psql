@@ -26,7 +26,7 @@ function checkRegInfo($formfields)
         {
             $query = "SELECT id FROM player WHERE email='$value'";
             $result = pg_exec($cxn,$query) or die ("Could not run check player email query");  
-            $num=pg_numrows($result);
+            $num=pg_num_rows($result);
             $query = "SELECT password FROM player WHERE email='$value'";
             $result = pg_exec($cxn,$query) or die ("Could not run check player email query");  
             $pwordexist=pg_fetch_row($result);

@@ -84,7 +84,7 @@
             }
             $query = "SELECT tiebreakerpts FROM games WHERE week_num=$currentweekid AND tiebreaker=1";
             $result = pg_exec($cxn, $query) or die ("Couldn't execute team lookup query.");
-            if (pg_numrows($result)>0)
+            if (pg_num_rows($result)>0)
             {
                 $row=pg_fetch_assoc($result);
                 extract($row);
@@ -96,7 +96,7 @@
                     $query = "SELECT picks.tiebreakerpts FROM picks INNER JOIN games ON picks.game_id=games.id WHERE games.week_num=$currentweekid AND
                     games.tiebreaker=1 AND picks.player_id=$viewingplayer";
                     $result = pg_exec($cxn, $query) or die ("Couldn't execute team lookup query for tiebreakerpts.");
-                    if (pg_numrows($result)>0)
+                    if (pg_num_rows($result)>0)
                     {
                         $row=pg_fetch_row($result);
                         $tiebreakerpts=$row[0];

@@ -159,7 +159,7 @@ function displayoutcomes($weeknum, $playerid, $showfieldrecords)
 
         $query = "SELECT picks.tiebreakerpts, games.tiebreakerpts FROM picks INNER JOIN games ON picks.game_id=games.id WHERE games.week_num=$weeknum AND games.tiebreaker=1 AND picks.player_id=$playerid";
             $result = pg_exec($cxn, $query) or die ("Couldn't execute team lookup query for tiebreakerpts.");
-            if (pg_numrows($result)>0) {
+            if (pg_num_rows($result)>0) {
                 $row=pg_fetch_row($result);
                 $tiebreakerpts=$row[0];
                 $actualtiebreakerpts=$row[1];
