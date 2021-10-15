@@ -4,6 +4,8 @@
 function checkRegInfo($formfields)
 {   
     require ("misc.inc");
+
+    $blank_array=[]; /*create empty array to store form values*/
     
     $firstpassword="";
     $num=0; /*check var for existing email address*/
