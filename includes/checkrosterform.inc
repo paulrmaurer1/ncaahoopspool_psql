@@ -4,6 +4,8 @@
 function checkrosterform($formfields)
 {   require ("misc.inc");
     
+    $blank_array=[]; /*create empty array to store form values*/
+    
     foreach ($formfields as $field => $value)
     {
     /*echo $field,":",$value, "<br/>";*/
