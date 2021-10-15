@@ -9,7 +9,8 @@
 <label for="team_id">Team Name:</label>
 <select name="team_id" id="team_id">
 <?php
-/*display team list in drop-down list box*/
+    $seltext='';
+    /*display team list in drop-down list box*/
     $query="SELECT * FROM teams ORDER BY team_name ASC";
     $result=pg_exec($cxn,$query) or die ("Could not execute query");
     while ($row=pg_fetch_assoc($result))
