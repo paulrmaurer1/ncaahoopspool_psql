@@ -5,6 +5,8 @@ function checkrosterform($formfields)
 {   require ("misc.inc");
     
     $blank_array=[]; /*create empty array to store form values*/
+    $bad_format=[]; /*create empty array to store bad form values*/
+    $dup_format=[]; /*create empty array to store duplicate form values*/
     
     foreach ($formfields as $field => $value)
     {
