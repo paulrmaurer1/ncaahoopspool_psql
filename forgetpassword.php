@@ -7,7 +7,8 @@
 	}
 
 	/* Load Composer dependencies */
-	require_once ("vendor/autoload.php");
+	// require_once ("vendor/autoload.php");
+	require 'vendor/autoload.php';
 	
 	/* Load Mailgun Class */
 	use Mailgun\Mailgun;
@@ -36,7 +37,7 @@
 						
 						/* Send email with Mailgun */
 						// $mg = new Mailgun($api_key);
-						$mg = Mailgun::create($api_key, $api_url);
+						$mg = Mailgun::create($api_key);
 						$parameters = mgMailPasswordParameters($id);
 						// $mg->sendMessage($domain, $parameters);
 						$mg->messages()->send($domain, $parameters);
