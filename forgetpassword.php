@@ -7,8 +7,8 @@
 	}
 
 	/* Load Composer dependencies */
-	// require_once ("vendor/autoload.php");
-	require 'vendor/autoload.php';
+	require_once ("vendor/autoload.php");
+	// require 'vendor/autoload.php';
 	
 	/* Load Mailgun Class */
 	use Mailgun\Mailgun;
