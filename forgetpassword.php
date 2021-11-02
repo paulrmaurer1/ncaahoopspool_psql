@@ -39,8 +39,8 @@
 						$mg = new Mailgun($api_key);
 						// $mg = Mailgun::create($api_key);
 						$parameters = mgMailPasswordParameters($id);
-						// $mg->sendMessage($domain, $parameters);
-						$mg->messages()->send($domain, $parameters);
+						$mg->sendMessage($domain, $parameters);
+						// $mg->messages()->send($domain, $parameters);
 
 					    /* Return user to Login Page */
 					    header("Location: login.php");
