@@ -36,8 +36,8 @@
 					    extract($row);
 						
 						/* Send email with Mailgun */
-						// $mg = new Mailgun($api_key);
-						$mg = Mailgun::create($api_key);
+						$mg = new Mailgun($api_key);
+						// $mg = Mailgun::create($api_key);
 						$parameters = mgMailPasswordParameters($id);
 						// $mg->sendMessage($domain, $parameters);
 						$mg->messages()->send($domain, $parameters);
