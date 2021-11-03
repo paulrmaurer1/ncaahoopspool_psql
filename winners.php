@@ -292,7 +292,7 @@
 
 <?php
 echo "</form>";
-echo "<h4 style='color:red;'>Players who have not submitted all of their picks yet:</h4>";
+echo "<h4 style='color:red;'>Players who have not submitted all of their picks yet: (# games not picked)</h4>";
     include_once("includes/displayincompletepicksnames.inc");
 
 echo "</div>"; /*end of body-content div*/

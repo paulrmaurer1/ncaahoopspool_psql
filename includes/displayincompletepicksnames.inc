@@ -12,19 +12,21 @@
          extract($row);
          $picksquery="SELECT picks.pick FROM picks INNER JOIN games ON picks.game_id = games.id WHERE games.locale>0 AND games.week_num='$currentweekid' AND picks.player_id ='$id'";
          $picksresult=pg_exec($cxn,$picksquery) or die ("Could not execute picks query");
+         $gamesnotpicked=0;
          while ($picksrow=pg_fetch_assoc($picksresult))
          {
              extract($picksrow);
              if ($pick==0)
                  {
                      $isplayerincomplete=1;
+                     $gamesnotpicked += 1;
                  }
          }
          if ($isplayerincomplete==1)
              {
                  $incompleteplayers['$counter']=$id;
                  $counter = $counter+1;
-                 echo $firstname." ".$lastname."<br/>";
+                 echo $firstname." ".$lastname." (".$gamesnotpicked.")<br/>";
              }
      }
      echo "<br/>";
