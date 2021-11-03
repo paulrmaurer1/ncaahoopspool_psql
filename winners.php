@@ -33,7 +33,7 @@
 
 <?php
     /* Load Composer dependencies */
-    require_once ("vendor/autoload.php");
+    require 'vendor/autoload.php';
     
     /* Load Mailgun Class */
     use Mailgun\Mailgun;
@@ -241,17 +241,17 @@
             echo "<p class='success'>Games results and the Overall Summary have been successfully updated!</p>";
         }
         if ($_POST['display_button']=="Email Schedule to ALL") {
-            // mailschedule($currentweekid, 1, $emailmessage, $emailsubject); 
-            $mg = new Mailgun($api_key);
+            /* Send email with Mailgun */ 
+            $mg = Mailgun::create($api_key);
             $parameters = mgMailReminderParameters($currentweekid, 1, $emailmessage, $emailsubject);
-            $mg->sendMessage($domain, $parameters);
+            $mg->messages()->send($domain, $parameters);
             echo "<p class='success'>Emails have been sent to the entire roster!</p>";
         }
         if ($_POST['display_button']=="Email to List Below") {
-            // mailschedule($currentweekid, 0, $emailmessage, $emailsubject); 
-            $mg = new Mailgun($api_key);
+            /* Send email with Mailgun */ 
+            $mg = Mailgun::create($api_key);
             $parameters = mgMailReminderParameters($currentweekid, 0, $emailmessage, $emailsubject);
-            $mg->sendMessage($domain, $parameters);
+            $mg->messages()->send($domain, $parameters);
             echo "<p class='success'>Emails have been sent to the players who have not submitted picks yet!</p>";
         }
     }
