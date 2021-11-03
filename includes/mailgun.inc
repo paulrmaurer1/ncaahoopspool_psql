@@ -28,6 +28,7 @@
 	function mgMailReminderParameters($weeknum, $all, $emailmessage, $emailsubject)
 	{
 	    require ("misc.inc");
+	    $to="";
 	    if ($all==0) {
 	        /*only send to players who haven't submitted results yet*/
 	        $query="SELECT id, email FROM player WHERE email<>'admin'";
