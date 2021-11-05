@@ -9,7 +9,7 @@
         $currentdatetime=date("Y-m-d H:i:s");
 
         // set session variables upon login
-        session_start();
+        // session_start();
         $_SESSION['auth']="yes";
         $_SESSION['logname']=$login_email;
         $query = "SELECT id FROM player WHERE email='".$login_email."'";
