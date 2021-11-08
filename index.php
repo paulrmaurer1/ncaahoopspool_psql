@@ -5,11 +5,15 @@
 	session_start();
 
 	// If user not authorized, redirect to login page
-	if ($_SESSION['auth']) {
+	if (isset($_SESSION['auth'])) {
 		if($_SESSION['auth']!= "yes") {
 			header ("Location: login.php");
 			exit();
 		}
+	}
+	else {
+		header ("Location: login.php");
+		exit();
 	}
 
 	include_once("includes/head.inc");
