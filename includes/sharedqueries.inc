@@ -14,9 +14,12 @@
         $result = pg_exec($cxn, $query) or die ("Couldn't execute week query pass 1.");
         while ($row=pg_fetch_assoc($result)) {
             extract($row);
+            if ($currentdate<$from_date) {
+              break;  /*to capture dates before season starts*/
+            }
             if ($currentdate>=$from_date && $currentdate<=$to_date) {
-                $currentweek=$num;
-                break;
+              $currentweek=$num;
+              break;
             }
             $currentweek=$num; /*to capture last week in case past last week of season*/
         }
