@@ -16,7 +16,9 @@
             extract($row);
             if ($currentdate>=$from_date && $currentdate<=$to_date) {
                 $currentweek=$num;
+                break;
             }
+            $currentweek=$num; /*to capture last week in case past last week of season*/
         }
         return $currentweek;
     }
