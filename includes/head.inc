@@ -13,7 +13,7 @@
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-36422200-1');
+	  gtag('config', 'G-8G3VJHEN5B');
 	</script>
 
 </head>
