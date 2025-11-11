@@ -71,6 +71,39 @@ function displayoutcomes($weeknum, $playerid, $showfieldrecords)
                 $fresult = pg_exec($cxn, $fquery) or die ("Couldn't execute field pick record query.");
                 $frow=pg_fetch_assoc($fresult);
                 extract($frow);
+
+                /* Build player lists for hover tooltips */
+                $teamPickers = [];
+                $oppPickers = [];
+                if ($showfieldrecords) {
+                    $teamPickersQuery = "
+                        SELECT 
+                            player.firstname || ' ' || player.lastname AS fullname
+                        FROM picks
+                        INNER JOIN player ON player.id = picks.player_id
+                        WHERE picks.game_id=$id AND picks.pick = 1
+                        ORDER BY player.lastname, player.firstname
+                    ";
+                    $teamPickersResult = pg_exec($cxn, $teamPickersQuery) or die ("Couldn't execute team pickers query.");
+                    while ($pickerRow = pg_fetch_assoc($teamPickersResult)) {
+                        $teamPickers[] = $pickerRow['fullname'];
+                    }
+
+                    $oppPickersQuery = "
+                        SELECT 
+                            player.firstname || ' ' || player.lastname AS fullname
+                        FROM picks
+                        INNER JOIN player ON player.id = picks.player_id
+                        WHERE picks.game_id=$id AND picks.pick = 2
+                        ORDER BY player.lastname, player.firstname
+                    ";
+                    $oppPickersResult = pg_exec($cxn, $oppPickersQuery) or die ("Couldn't execute opponent pickers query.");
+                    while ($pickerRow = pg_fetch_assoc($oppPickersResult)) {
+                        $oppPickers[] = $pickerRow['fullname'];
+                    }
+                }
+                $teamPickersData = htmlspecialchars(json_encode($teamPickers), ENT_QUOTES);
+                $oppPickersData = htmlspecialchars(json_encode($oppPickers), ENT_QUOTES);
                 
                 /*determine Team name*/
                 if ($locale==1) {$homeat="at";} else {$homeat="";}
@@ -94,41 +127,63 @@ function displayoutcomes($weeknum, $playerid, $showfieldrecords)
                 $prow=pg_fetch_assoc($presult);
                 extract($prow);
                 
-                $teamdisplay=">";
-                $oppdisplay=">";
+                $teamClasses = ['player-pick-cell'];
+                $oppClasses = ['player-pick-cell'];
+                $teamPrefix = '';
+                $oppPrefix = '';
+
                 if ($outcome==0 AND $pick==1) /*no outcome posted yet, display home team pick in bold*/
                 {
-                    $teamdisplay="class=\"picked\">x ";
+                    $teamClasses[] = "picked";
+                    $teamPrefix = "x ";
                 }
                 if ($outcome==0 AND $pick==2) /*no outcome posted yet, display opponent pick in bold*/
                 {
-                    $oppdisplay="class=\"picked\">x ";
+                    $oppClasses[] = "picked";
+                    $oppPrefix = "x ";
                 }
                 if ($outcome==1 AND $pick==$outcome)
                 {
-                    $teamdisplay="class=\"won\">x ";
+                    $teamClasses[] = "won";
+                    $teamPrefix = "x ";
                 }
                 if ($outcome==2 AND $pick==$outcome)
                 {
-                    $oppdisplay="class=\"won\">x ";
+                    $oppClasses[] = "won";
+                    $oppPrefix = "x ";
                 }
                 if ($outcome==1 AND $pick<>$outcome)
                 {
-                    $teamdisplay="class=\"missed\">";
-                    $oppdisplay="class=\"wrong\">x ";
+                    $teamClasses[] = "missed";
+                    $oppClasses[] = "wrong";
+                    $oppPrefix = "x ";
                 }
                 if ($outcome==2 AND $pick<>$outcome)
                 {
-                    $teamdisplay="class=\"wrong\">x ";
-                    $oppdisplay="class=\"missed\">";
+                    $teamClasses[] = "wrong";
+                    $teamPrefix = "x ";
+                    $oppClasses[] = "missed";
                 }
+
+                if ($showfieldrecords) {
+                    $teamClasses[] = 'player-pick-cell-enabled';
+                    $oppClasses[] = 'player-pick-cell-enabled';
+                }
+
+                $teamNameAttr = htmlspecialchars(trim(($homeat ? $homeat.' ' : '').$playerteam), ENT_QUOTES);
+                $oppNameAttr = htmlspecialchars(trim(($awayat ? $awayat.' ' : '').$opponentteam), ENT_QUOTES);
+                $pickersEnabledAttr = $showfieldrecords ? "1" : "0";
+
+                $teamClassAttr = implode(' ', array_unique($teamClasses));
+                $oppClassAttr = implode(' ', array_unique($oppClasses));
+
                 /*display Team and Opponent with proper styling*/
-                echo "<td ".$teamdisplay."$homeat $playerteam";
+                echo "<td class=\"$teamClassAttr\" data-pickers=\"$teamPickersData\" data-team=\"$teamNameAttr\" data-pickers-enabled=\"$pickersEnabledAttr\">".$teamPrefix.($homeat ? $homeat." " : "").$playerteam;
                 if ($showfieldrecords) {
                         echo "&nbsp($teampicks)";
                     } 
                 echo "</td>\n";
-                echo "<td ".$oppdisplay."$awayat $opponentteam";
+                echo "<td class=\"$oppClassAttr\" data-pickers=\"$oppPickersData\" data-team=\"$oppNameAttr\" data-pickers-enabled=\"$pickersEnabledAttr\">".$oppPrefix.($awayat ? $awayat." " : "").$opponentteam;
                  if ($showfieldrecords) {
                         echo "&nbsp($oppteampicks)";
                     }
@@ -180,5 +235,103 @@ function displayoutcomes($weeknum, $playerid, $showfieldrecords)
     echo    "<h4 class=\"correct\">x [Teamname] = correct pick&nbsp&nbsp</h3>";
     echo    "<h4 class=\"wrong\">x [Teamname] = wrong pick</h3>";
     echo "</div>";
+
+    static $tooltipassetsinjected = false;
+    if (!$tooltipassetsinjected) {
+        $tooltipassetsinjected = true;
+        echo "<style>.player-pick-cell-enabled{cursor:pointer;}</style>";
+        echo "<div id=\"pickers-tooltip\" style=\"display:none; position:absolute; z-index:9999; background:#222; color:#fff; padding:6px 10px; border-radius:4px; font-size:0.85em; line-height:1.4; min-width:220px; max-width:280px; box-shadow:0 2px 8px rgba(0,0,0,0.3);\"></div>";
+        echo "<script>
+            jQuery(function(\$){
+                var escapeHtml = function(value){
+                    return String(value === undefined || value === null ? '' : value)
+                        .replace(/&/g, '&amp;')
+                        .replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;')
+                        .replace(/\"/g, '&quot;')
+                        .replace(/'/g, '&#39;');
+                };
+                var \$tooltip = \$('#pickers-tooltip');
+                var setTooltipPosition = function(event){
+                    var offset = 8;
+                    var tooltipWidth = \$tooltip.outerWidth();
+                    var tooltipHeight = \$tooltip.outerHeight();
+                    var scrollLeft = \$(window).scrollLeft();
+                    var scrollTop = \$(window).scrollTop();
+                    var viewportWidth = \$(window).width();
+                    var viewportHeight = \$(window).height();
+                    var clientX = event.clientX;
+                    var clientY = event.clientY;
+
+                    var left = clientX > viewportWidth / 2
+                        ? event.pageX - tooltipWidth - offset
+                        : event.pageX + offset;
+                    var top = clientY > viewportHeight / 2
+                        ? event.pageY - tooltipHeight - offset
+                        : event.pageY + offset;
+
+                    if (left + tooltipWidth > scrollLeft + viewportWidth - offset) {
+                        left = scrollLeft + viewportWidth - tooltipWidth - offset;
+                    }
+                    if (left < scrollLeft + offset) {
+                        left = scrollLeft + offset;
+                    }
+
+                    if (top + tooltipHeight > scrollTop + viewportHeight - offset) {
+                        top = scrollTop + viewportHeight - tooltipHeight - offset;
+                    }
+                    if (top < scrollTop + offset) {
+                        top = scrollTop + offset;
+                    }
+
+                    \$tooltip.css({ left: left, top: top });
+                };
+                \$('.player-pick-cell').on('mouseenter', function(e){
+                    var enabled = \$(this).data('pickers-enabled');
+                    if (!enabled) {
+                        \$tooltip.hide();
+                        return;
+                    }
+                    var pickers = \$(this).data('pickers');
+                    if (typeof pickers === 'string') {
+                        try {
+                            pickers = JSON.parse(pickers);
+                        } catch (err) {
+                            pickers = pickers ? [pickers] : [];
+                        }
+                    }
+                    if (!Array.isArray(pickers)) {
+                        pickers = [];
+                    }
+                    var team = \$(this).data('team');
+                    if (!pickers.length) {
+                        pickers = ['No picks submitted'];
+                    }
+                    if (!team) {
+                        team = 'Team';
+                    }
+                    var hasActualPicks = !(pickers.length === 1 && pickers[0] === 'No picks submitted');
+                    var listHtml;
+                    if (hasActualPicks) {
+                        listHtml = '<ul style=\"margin:4px 0 0; padding-left:18px; text-align:left;\">';
+                        \$.each(pickers, function(_, name){
+                            listHtml += '<li>' + escapeHtml(name) + '</li>';
+                        });
+                        listHtml += '</ul>';
+                    } else {
+                        listHtml = '<div style=\"margin:4px 0 0; text-align:left;\">No picks submitted</div>';
+                    }
+                    var content = '<strong>' + escapeHtml(team) + '</strong>' + listHtml;
+                    \$tooltip.stop(true, true).html(content).css({ display: 'block', opacity: 0 });
+                    setTooltipPosition(e);
+                    \$tooltip.animate({ opacity: 1 }, 120);
+                }).on('mousemove', function(e){
+                    setTooltipPosition(e);
+                }).on('mouseleave', function(){
+                    \$tooltip.hide();
+                });
+            });
+        </script>";
+    }
 }
 ?>    

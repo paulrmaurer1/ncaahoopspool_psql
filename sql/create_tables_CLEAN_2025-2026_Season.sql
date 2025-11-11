@@ -495,7 +495,7 @@ INSERT INTO teams (id, team_name, school, city, state, conference) VALUES
 (354, 'Emporia State Hornets', 'Emporia State University', 'Emporia', 'Kansas', 'Mid-America Intercollegiate Athletic Association'),
 (355, 'St. Francis Brooklyn Terriers', 'St. Francis College', 'Brooklyn Heights', 'New York', 'Northeast Conference'),
 (356, 'Tennessee Temple Crusaders', 'Tennessee Temple University', 'Chattanooga', 'Tennessee', 'Mid-East Conference'),
-(357, 'Grand Canyon Thunder', 'Grand Canyon University', 'Phoenix', 'Arizona', 'Western Athletic Conference'),
+(357, 'Grand Canyon Antelopes', 'Grand Canyon University', 'Phoenix', 'Arizona', 'Western Athletic Conference'),
 (358, 'UC San Diego Tritons', 'University of California, San Diego', 'San Diego', 'California', 'California Collegiate Athletic Association'),
 (359, 'Seton Hill Griffins', 'Seton Hill University', 'Greensburg', 'Pennsylvania', 'Pennsylvania State Athletics Conference'),
 (360, 'Rutgers-Newark Scarlet Raiders', 'Rutgers University-Newark', 'Newark', 'New Jersey', 'New Jersey Athletic Conference'),
